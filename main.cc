@@ -1,3 +1,8 @@
+/**
+ * looper
+ * (c) timo.heister@gmail.com
+ */
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -78,7 +83,6 @@ int main(int argc, char *argv[])
     }
     string cmd(argv[1]);
     cmd.append(" temp.~");
-    //std::ofstream out("out.xml");
     std::ifstream in(argv[2]);
 
     string line, str;
