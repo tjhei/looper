@@ -1,2 +1,2 @@
 all:
-        g++ main.cc -o looper
+	g++ main.cc -o looper
