@@ -8,6 +8,7 @@
 #include <fstream>
 #include <vector>
 #include <stdlib.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -82,7 +83,10 @@ int main(int argc, char *argv[])
         return 0;
     }
     string cmd(argv[1]);
-    cmd.append(" temp.~");
+    char tmpname[L_tmpnam];
+    tmpnam(tmpname);
+    cmd.append(" ");
+    cmd.append(tmpname);
     std::ifstream in(argv[2]);
 
     string line, str;
@@ -114,7 +118,7 @@ int main(int argc, char *argv[])
     do {
         cout << "Loop " << c << ":" << endl;c++;
         {
-            std::ofstream out("temp.~");
+            std::ofstream out(tmpname);
             for (int i=0;i<alles.size();++i)
             {
             out << alles[i].get();
@@ -131,6 +135,7 @@ int main(int argc, char *argv[])
     } while (true);
 
 
-    system("rm temp.~");
+    std::string rmcmd = std::string("rm ") + tmpname;
+    system(rmcmd.c_str());
     return 0;
 }
